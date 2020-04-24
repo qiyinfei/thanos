@@ -18,6 +18,7 @@ We use *breaking* word for marking changes that are not backward compatible (rel
 ### Added
 
 - [#2502](https://github.com/thanos-io/thanos/pull/2502) Added `hints` field to `SeriesResponse`. Hints in an opaque data structure that can be used to carry additional information from the store and its content is implementation specific.
+- [#xxx](https://github.com/thanos-io/thanos/pull/xxx) Added `thanos tools serve storeapi --json` command that expose local JSON file with metrics as StoreAPI.
 
 ### Changed
 
