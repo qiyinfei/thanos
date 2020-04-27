@@ -6,6 +6,7 @@ package query
 import (
 	"fmt"
 	"net/url"
+	"os"
 	"strings"
 
 	"gopkg.in/yaml.v2"
@@ -64,6 +65,12 @@ func BuildQueryConfig(queryAddrs []string) ([]Config, error) {
 			return nil, errors.Errorf("%q is not supported scheme for querier address", u.Scheme)
 		}
 		configs = append(configs, Config{
+			HTTPClientConfig: http_util.ClientConfig{
+				BasicAuth: http_util.BasicAuth{
+					Username: os.Getenv("RULER_BASIC_AUTH_USERNAME"),
+					Password: os.Getenv("RULER_BASIC_AUTH_PASSWORD"),
+				},
+			},
 			EndpointsConfig: http_util.EndpointsConfig{
 				Scheme:          u.Scheme,
 				StaticAddresses: []string{u.Host},
